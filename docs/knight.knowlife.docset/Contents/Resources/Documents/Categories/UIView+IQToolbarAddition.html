@@ -1,0 +1,500 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>UIView(IQToolbarAddition) Category Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">knowlife </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">3000k</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/shouldHideTitle">shouldHideTitle</option>
+		
+	</optgroup>
+	
+
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/addPreviousNextDoneOnKeyboardWithTarget:previousAction:nextAction:doneAction:">- addPreviousNextDoneOnKeyboardWithTarget:previousAction:nextAction:doneAction:</option>
+		
+		<option value="//api/name/addRightButtonOnKeyboardWithText:target:action:">- addRightButtonOnKeyboardWithText:target:action:</option>
+		
+		<option value="//api/name/addRightLeftOnKeyboardWithTarget:leftButtonTitle:rightButtonTitle:rightButtonAction:leftButtonAction:">- addRightLeftOnKeyboardWithTarget:leftButtonTitle:rightButtonTitle:rightButtonAction:leftButtonAction:</option>
+		
+		<option value="//api/name/setEnablePrevious:next:">- setEnablePrevious:next:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">UIView(IQToolbarAddition) Category Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Declared in</th>
+	<td>IQUIView+IQKeyboardToolbar.h<br />IQUIView+IQKeyboardToolbar.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<pre><code>@category UIView (IQToolbarAddition)
+</code></pre>
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/shouldHideTitle" title="shouldHideTitle"></a>
+	<h3 class="method-title"><code><a href="#//api/name/shouldHideTitle">&nbsp;&nbsp;shouldHideTitle</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>if shouldHideTitle is YES, then title will not be added to the toolbar. Default to NO.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (assign, nonatomic) BOOL shouldHideTitle</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<pre><code>@property shouldHideTitle
+</code></pre>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">IQUIView+IQKeyboardToolbar.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addRightButtonOnKeyboardWithText:target:action:" title="addRightButtonOnKeyboardWithText:target:action:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addRightButtonOnKeyboardWithText:target:action:">&ndash;&nbsp;addRightButtonOnKeyboardWithText:target:action:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Helper functions to add Done button on keyboard.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addRightButtonOnKeyboardWithText:(NSString *)<em>text</em> target:(id)<em>target</em> action:(SEL)<em>action</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>action:</code></th>
+						<td><p>Done button action name. Usually &lsquo;doneAction:(IQBarButtonItem*)item&rsquo;.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>titleText:</code></th>
+						<td><p>text to show as title in IQToolbar'.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>target:</code></th>
+						<td><p>Target object for selector. Usually &lsquo;self&rsquo;.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>shouldShowPlaceholder:</code></th>
+						<td><p>A boolean to indicate whether to show textField placeholder on IQToolbar'.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<pre><code>@method addDoneOnKeyboardWithTarget:action:
+</code></pre>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">IQUIView+IQKeyboardToolbar.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addRightLeftOnKeyboardWithTarget:leftButtonTitle:rightButtonTitle:rightButtonAction:leftButtonAction:" title="addRightLeftOnKeyboardWithTarget:leftButtonTitle:rightButtonTitle:rightButtonAction:leftButtonAction:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addRightLeftOnKeyboardWithTarget:leftButtonTitle:rightButtonTitle:rightButtonAction:leftButtonAction:">&ndash;&nbsp;addRightLeftOnKeyboardWithTarget:leftButtonTitle:rightButtonTitle:rightButtonAction:leftButtonAction:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Helper function to add Cancel and Done button on keyboard.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addRightLeftOnKeyboardWithTarget:(id)<em>target</em> leftButtonTitle:(NSString *)<em>leftTitle</em> rightButtonTitle:(NSString *)<em>rightTitle</em> rightButtonAction:(SEL)<em>rightAction</em> leftButtonAction:(SEL)<em>leftAction</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>shouldShowPlaceholder:</code></th>
+						<td><p>A boolean to indicate whether to show textField placeholder on IQToolbar'.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>titleText:</code></th>
+						<td><p>text to show as title in IQToolbar'.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>target:</code></th>
+						<td><p>Target object for selector. Usually &lsquo;self&rsquo;.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>cancelAction:</code></th>
+						<td><p>Crevious button action name. Usually &lsquo;cancelAction:(IQBarButtonItem*)item&rsquo;.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>doneAction:</code></th>
+						<td><p>Done button action name. Usually &lsquo;doneAction:(IQBarButtonItem*)item&rsquo;.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<pre><code>@method addCancelDoneOnKeyboardWithTarget:cancelAction:doneAction:
+</code></pre>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">IQUIView+IQKeyboardToolbar.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/addPreviousNextDoneOnKeyboardWithTarget:previousAction:nextAction:doneAction:" title="addPreviousNextDoneOnKeyboardWithTarget:previousAction:nextAction:doneAction:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/addPreviousNextDoneOnKeyboardWithTarget:previousAction:nextAction:doneAction:">&ndash;&nbsp;addPreviousNextDoneOnKeyboardWithTarget:previousAction:nextAction:doneAction:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Helper function to add SegmentedNextPrevious and Done button on keyboard.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)addPreviousNextDoneOnKeyboardWithTarget:(id)<em>target</em> previousAction:(SEL)<em>previousAction</em> nextAction:(SEL)<em>nextAction</em> doneAction:(SEL)<em>doneAction</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>previousAction:</code></th>
+						<td><p>Previous button action name. Usually &lsquo;previousAction:(IQSegmentedNextPrevious*)segmentedControl&rsquo;.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>nextAction:</code></th>
+						<td><p>Next button action name. Usually &lsquo;nextAction:(IQSegmentedNextPrevious*)segmentedControl&rsquo;.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>titleText:</code></th>
+						<td><p>text to show as title in IQToolbar'.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>target:</code></th>
+						<td><p>Target object for selector. Usually &lsquo;self&rsquo;.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>shouldShowPlaceholder:</code></th>
+						<td><p>A boolean to indicate whether to show textField placeholder on IQToolbar'.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>doneAction:</code></th>
+						<td><p>Done button action name. Usually &lsquo;doneAction:(IQBarButtonItem*)item&rsquo;.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<pre><code>@method addPreviousNextDoneOnKeyboardWithTarget:previousAction:nextAction:doneAction
+</code></pre>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">IQUIView+IQKeyboardToolbar.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/setEnablePrevious:next:" title="setEnablePrevious:next:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/setEnablePrevious:next:">&ndash;&nbsp;setEnablePrevious:next:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Helper function to enable and disable previous next buttons.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (void)setEnablePrevious:(BOOL)<em>isPreviousEnabled</em> next:(BOOL)<em>isNextEnabled</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isPreviousEnabled:</code></th>
+						<td><p>BOOL to enable/disable previous button on keyboard.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>isNextEnabled:</code></th>
+						<td><p>BOOL to enable/disable next button on keyboard..</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<pre><code>@method setEnablePrevious:next:
+</code></pre>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">IQUIView+IQKeyboardToolbar.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 3000k. All rights reserved. Updated: 2015-09-24</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

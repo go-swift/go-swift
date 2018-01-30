@@ -1,0 +1,1530 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<meta charset="utf-8">
+
+	<title>AFHTTPRequestOperationManager Class Reference</title>
+
+	<link rel="stylesheet" href="../css/style.css">
+	<meta name="viewport" content="initial-scale=1, maximum-scale=1.4">
+	<meta name="generator" content="appledoc 2.2.1 (build 1334)">
+</head>
+<body class="appledoc">
+	<header>
+		<div class="container" class="hide-in-xcode">
+			
+			<h1 id="library-title">
+				<a href="../index.html">knowlife </a>
+			</h1>
+
+			<p id="developer-home">
+				<a href="../index.html">3000k</a>
+			</p>
+			
+		</div>
+	</header>
+
+	<aside>
+		<div class="container">
+			<nav>
+				<ul id="header-buttons" role="toolbar">
+					<li><a href="../index.html">Index</a></li>
+<li><a href="../hierarchy.html">Hierarchy</a></li>
+
+					<li id="on-this-page" role="navigation">
+						<label>
+							On This Page
+
+							<div class="chevron">
+								<div class="chevy chevron-left"></div>
+								<div class="chevy chevron-right"></div>
+							</div>
+
+							<select id="jump-to">
+	<option value="top">Jump To&#133;</option>
+	
+	<option value="overview">Overview</option>
+	
+
+	
+	
+	<option value="tasks">Tasks</option>
+	
+	
+
+	
+	
+	<optgroup label="Properties">
+		
+		<option value="//api/name/baseURL">baseURL</option>
+		
+		<option value="//api/name/completionGroup">completionGroup</option>
+		
+		<option value="//api/name/completionQueue">completionQueue</option>
+		
+		<option value="//api/name/credential">credential</option>
+		
+		<option value="//api/name/operationQueue">operationQueue</option>
+		
+		<option value="//api/name/reachabilityManager">reachabilityManager</option>
+		
+		<option value="//api/name/requestSerializer">requestSerializer</option>
+		
+		<option value="//api/name/responseSerializer">responseSerializer</option>
+		
+		<option value="//api/name/securityPolicy">securityPolicy</option>
+		
+		<option value="//api/name/shouldUseCredentialStorage">shouldUseCredentialStorage</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Class Methods">
+		
+		<option value="//api/name/manager">+ manager</option>
+		
+	</optgroup>
+	
+
+	
+	<optgroup label="Instance Methods">
+		
+		<option value="//api/name/DELETE:parameters:success:failure:">- DELETE:parameters:success:failure:</option>
+		
+		<option value="//api/name/GET:parameters:success:failure:">- GET:parameters:success:failure:</option>
+		
+		<option value="//api/name/HEAD:parameters:success:failure:">- HEAD:parameters:success:failure:</option>
+		
+		<option value="//api/name/HTTPRequestOperationWithRequest:success:failure:">- HTTPRequestOperationWithRequest:success:failure:</option>
+		
+		<option value="//api/name/PATCH:parameters:success:failure:">- PATCH:parameters:success:failure:</option>
+		
+		<option value="//api/name/POST:parameters:constructingBodyWithBlock:success:failure:">- POST:parameters:constructingBodyWithBlock:success:failure:</option>
+		
+		<option value="//api/name/POST:parameters:success:failure:">- POST:parameters:success:failure:</option>
+		
+		<option value="//api/name/PUT:parameters:success:failure:">- PUT:parameters:success:failure:</option>
+		
+		<option value="//api/name/initWithBaseURL:">- initWithBaseURL:</option>
+		
+	</optgroup>
+	
+	
+</select>
+						</label>
+					</li>
+				</ul>
+			</nav>
+		</div>
+	</aside>
+
+	<article>
+		<div id="overview_contents" class="container">
+			<div id="content">
+				<main role="main">
+					<h1 class="title">AFHTTPRequestOperationManager Class Reference</h1>
+
+					
+					<div class="section section-specification"><table cellspacing="0"><tbody>
+						<tr>
+	<th>Inherits from</th>
+	<td>NSObject</td>
+</tr><tr>
+	<th>Conforms to</th>
+	<td>NSCopying<br />NSSecureCoding</td>
+</tr><tr>
+	<th>Declared in</th>
+	<td>AFHTTPRequestOperationManager.h<br />AFHTTPRequestOperationManager.m</td>
+</tr>
+						</tbody></table></div>
+					
+
+                    
+					
+					<div class="section section-overview">
+						<a title="Overview" name="overview"></a>
+						<h2 class="subtitle subtitle-overview">Overview</h2>
+						<p><code>AFHTTPRequestOperationManager</code> encapsulates the common patterns of communicating with a web application over HTTP, including request creation, response serialization, network reachability monitoring, and security, as well as request operation management.</p>
+
+<h2>Subclassing Notes</h2>
+
+<p>Developers targeting iOS 7 or Mac OS X 10.9 or later that deal extensively with a web service are encouraged to subclass <a href="../Classes/AFHTTPSessionManager.html"><code>AFHTTPSessionManager</code></a>, providing a class method that returns a shared singleton object on which authentication and other configuration can be shared across the application.</p>
+
+<p>For developers targeting iOS 6 or Mac OS X 10.8 or earlier, <code>AFHTTPRequestOperationManager</code> may be used to similar effect.</p>
+
+<h2>Methods to Override</h2>
+
+<p>To change the behavior of all request operation construction for an <code>AFHTTPRequestOperationManager</code> subclass, override <code>HTTPRequestOperationWithRequest:success:failure</code>.</p>
+
+<h2>Serialization</h2>
+
+<p>Requests created by an HTTP client will contain default headers and encode parameters according to the <a href="#//api/name/requestSerializer"><code>requestSerializer</code></a> property, which is an object conforming to <a href="../Protocols/AFURLRequestSerialization.html"><code>AFURLRequestSerialization</code></a>.</p>
+
+<p>Responses received from the server are automatically validated and serialized by the <code>responseSerializers</code> property, which is an object conforming to <a href="../Protocols/AFURLResponseSerialization.html"><code>AFURLResponseSerialization</code></a></p>
+
+<h2>URL Construction Using Relative Paths</h2>
+
+<p>For HTTP convenience methods, the request serializer constructs URLs from the path relative to the <a href="#//api/name/baseURL"><code>baseURL</code></a>, using <code>NSURL +URLWithString:relativeToURL:</code>, when provided. If <a href="#//api/name/baseURL"><code>baseURL</code></a> is <code>nil</code>, <code>path</code> needs to resolve to a valid <code>NSURL</code> object using <code>NSURL +URLWithString:</code>.</p>
+
+<p>Below are a few examples of how <a href="#//api/name/baseURL"><code>baseURL</code></a> and relative paths interact:</p>
+
+<pre><code>NSURL *baseURL = [NSURL URLWithString:@"http://example.com/v1/"];
+[NSURL URLWithString:@"foo" relativeToURL:baseURL];                  // http://example.com/v1/foo
+[NSURL URLWithString:@"foo?bar=baz" relativeToURL:baseURL];          // http://example.com/v1/foo?bar=baz
+[NSURL URLWithString:@"/foo" relativeToURL:baseURL];                 // http://example.com/foo
+[NSURL URLWithString:@"foo/" relativeToURL:baseURL];                 // http://example.com/v1/foo
+[NSURL URLWithString:@"/foo/" relativeToURL:baseURL];                // http://example.com/foo/
+[NSURL URLWithString:@"http://example2.com/" relativeToURL:baseURL]; // http://example2.com/
+</code></pre>
+
+<p>Also important to note is that a trailing slash will be added to any <a href="#//api/name/baseURL"><code>baseURL</code></a> without one. This would otherwise cause unexpected behavior when constructing URLs using paths without a leading slash.</p>
+
+<h2>Network Reachability Monitoring</h2>
+
+<p>Network reachability status and change monitoring is available through the <a href="#//api/name/reachabilityManager"><code>reachabilityManager</code></a> property. Applications may choose to monitor network reachability conditions in order to prevent or suspend any outbound requests. See <a href="../Classes/AFNetworkReachabilityManager.html"><code>AFNetworkReachabilityManager</code></a> for more details.</p>
+
+<h2>NSSecureCoding &amp; NSCopying Caveats</h2>
+
+<p><code>AFHTTPRequestOperationManager</code> conforms to the <code>NSSecureCoding</code> and <code>NSCopying</code> protocols, allowing operations to be archived to disk, and copied in memory, respectively. There are a few minor caveats to keep in mind, however:</p>
+
+<ul>
+<li>Archives and copies of HTTP clients will be initialized with an empty operation queue.</li>
+<li>NSSecureCoding cannot serialize / deserialize block properties, so an archive of an HTTP client will not include any reachability callback block that may be set.</li>
+</ul>
+
+					</div>
+					
+					
+
+					
+					
+					<div class="section section-tasks">
+						<a title="Tasks" name="tasks"></a>
+						
+
+						
+						<h2 class="task-title">Other Methods</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/baseURL" title="baseURL"></a>
+	<h3 class="method-title"><code><a href="#//api/name/baseURL">&nbsp;&nbsp;baseURL</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The URL used to monitor reachability, and construct requests from relative paths in methods like <code>requestWithMethod:URLString:parameters:</code>, and the <code>GET</code> / <code>POST</code> / et al. convenience methods.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readonly, nonatomic, strong) NSURL *baseURL</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The URL used to monitor reachability, and construct requests from relative paths in methods like <code>requestWithMethod:URLString:parameters:</code>, and the <code>GET</code> / <code>POST</code> / et al. convenience methods.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/requestSerializer" title="requestSerializer"></a>
+	<h3 class="method-title"><code><a href="#//api/name/requestSerializer">&nbsp;&nbsp;requestSerializer</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Requests created with <code>requestWithMethod:URLString:parameters:</code> &amp; <code>multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:</code> are constructed with a set of default headers using a parameter serialization specified by this property. By default, this is set to an instance of <a href="../Classes/AFHTTPRequestSerializer.html"><code>AFHTTPRequestSerializer</code></a>, which serializes query string parameters for <code>GET</code>, <code>HEAD</code>, and <code>DELETE</code> requests, or otherwise URL-form-encodes HTTP message bodies.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) AFHTTPRequestSerializer&lt;AFURLRequestSerialization&gt; *requestSerializer</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Requests created with <code>requestWithMethod:URLString:parameters:</code> &amp; <code>multipartFormRequestWithMethod:URLString:parameters:constructingBodyWithBlock:</code> are constructed with a set of default headers using a parameter serialization specified by this property. By default, this is set to an instance of <a href="../Classes/AFHTTPRequestSerializer.html"><code>AFHTTPRequestSerializer</code></a>, which serializes query string parameters for <code>GET</code>, <code>HEAD</code>, and <code>DELETE</code> requests, or otherwise URL-form-encodes HTTP message bodies.</p><div class="warning"><p><strong>Warning:</strong> <code>requestSerializer</code> must not be <code>nil</code>.</p></div>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/responseSerializer" title="responseSerializer"></a>
+	<h3 class="method-title"><code><a href="#//api/name/responseSerializer">&nbsp;&nbsp;responseSerializer</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Responses sent from the server in data tasks created with <code>dataTaskWithRequest:success:failure:</code> and run using the <code>GET</code> / <code>POST</code> / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to a JSON serializer, which serializes data from responses with a <code>application/json</code> MIME type, and falls back to the raw data object. The serializer validates the status code to be in the <code>2XX</code> range, denoting success. If the response serializer generates an error in <code>-responseObjectForResponse:data:error:</code>, the <code>failure</code> callback of the session task or request operation will be executed; otherwise, the <code>success</code> callback will be executed.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) AFHTTPResponseSerializer&lt;AFURLResponseSerialization&gt; *responseSerializer</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Responses sent from the server in data tasks created with <code>dataTaskWithRequest:success:failure:</code> and run using the <code>GET</code> / <code>POST</code> / et al. convenience methods are automatically validated and serialized by the response serializer. By default, this property is set to a JSON serializer, which serializes data from responses with a <code>application/json</code> MIME type, and falls back to the raw data object. The serializer validates the status code to be in the <code>2XX</code> range, denoting success. If the response serializer generates an error in <code>-responseObjectForResponse:data:error:</code>, the <code>failure</code> callback of the session task or request operation will be executed; otherwise, the <code>success</code> callback will be executed.</p><div class="warning"><p><strong>Warning:</strong> <code>responseSerializer</code> must not be <code>nil</code>.</p></div>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/operationQueue" title="operationQueue"></a>
+	<h3 class="method-title"><code><a href="#//api/name/operationQueue">&nbsp;&nbsp;operationQueue</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The operation queue on which request operations are scheduled and run.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSOperationQueue *operationQueue</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The operation queue on which request operations are scheduled and run.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Managing URL Credentials" name="task_Managing URL Credentials"></a>
+						<h2 class="task-title">Managing URL Credentials</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/shouldUseCredentialStorage" title="shouldUseCredentialStorage"></a>
+	<h3 class="method-title"><code><a href="#//api/name/shouldUseCredentialStorage">&nbsp;&nbsp;shouldUseCredentialStorage</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Whether request operations should consult the <a href="#//api/name/credential">credential</a> storage for authenticating the connection. <code>YES</code> by default.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, assign) BOOL shouldUseCredentialStorage</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Whether request operations should consult the <a href="#//api/name/credential">credential</a> storage for authenticating the connection. <code>YES</code> by default.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/AFURLConnectionOperation.html">AFURLConnectionOperation</a> <a href="#//api/name/shouldUseCredentialStorage">@property shouldUseCredentialStorage</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/credential" title="credential"></a>
+	<h3 class="method-title"><code><a href="#//api/name/credential">&nbsp;&nbsp;credential</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The credential used by request operations for authentication challenges.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) NSURLCredential *credential</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The credential used by request operations for authentication challenges.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="../Classes/AFURLConnectionOperation.html">AFURLConnectionOperation</a> <a href="#//api/name/credential">@property credential</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Managing Security Policy" name="task_Managing Security Policy"></a>
+						<h2 class="task-title">Managing Security Policy</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/securityPolicy" title="securityPolicy"></a>
+	<h3 class="method-title"><code><a href="#//api/name/securityPolicy">&nbsp;&nbsp;securityPolicy</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The security policy used by created request operations to evaluate server trust for secure connections. <code>AFHTTPRequestOperationManager</code> uses the <code>defaultPolicy</code> unless otherwise specified.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) AFSecurityPolicy *securityPolicy</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The security policy used by created request operations to evaluate server trust for secure connections. <code>AFHTTPRequestOperationManager</code> uses the <code>defaultPolicy</code> unless otherwise specified.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Managing Network Reachability" name="task_Managing Network Reachability"></a>
+						<h2 class="task-title">Managing Network Reachability</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/reachabilityManager" title="reachabilityManager"></a>
+	<h3 class="method-title"><code><a href="#//api/name/reachabilityManager">&nbsp;&nbsp;reachabilityManager</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The network reachability <a href="#//api/name/manager">manager</a>. <code>AFHTTPRequestOperationManager</code> uses the <code>sharedManager</code> by default.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (readwrite, nonatomic, strong) AFNetworkReachabilityManager *reachabilityManager</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The network reachability <a href="#//api/name/manager">manager</a>. <code>AFHTTPRequestOperationManager</code> uses the <code>sharedManager</code> by default.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Managing Callback Queues" name="task_Managing Callback Queues"></a>
+						<h2 class="task-title">Managing Callback Queues</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/completionQueue" title="completionQueue"></a>
+	<h3 class="method-title"><code><a href="#//api/name/completionQueue">&nbsp;&nbsp;completionQueue</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The dispatch queue for the <code>completionBlock</code> of request operations. If <code>NULL</code> (default), the main queue is used.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) dispatch_queue_t completionQueue</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The dispatch queue for the <code>completionBlock</code> of request operations. If <code>NULL</code> (default), the main queue is used.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/completionGroup" title="completionGroup"></a>
+	<h3 class="method-title"><code><a href="#//api/name/completionGroup">&nbsp;&nbsp;completionGroup</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>The dispatch group for the <code>completionBlock</code> of request operations. If <code>NULL</code> (default), a private dispatch group is used.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>@property (nonatomic, strong) dispatch_group_t completionGroup</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>The dispatch group for the <code>completionBlock</code> of request operations. If <code>NULL</code> (default), a private dispatch group is used.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Creating and Initializing HTTP Clients" name="task_Creating and Initializing HTTP Clients"></a>
+						<h2 class="task-title">Creating and Initializing HTTP Clients</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/manager" title="manager"></a>
+	<h3 class="method-title"><code><a href="#//api/name/manager">+&nbsp;manager</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and returns an <code>AFHTTPRequestOperationManager</code> object.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>+ (instancetype)manager</code></div>
+
+		    
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates and returns an <code>AFHTTPRequestOperationManager</code> object.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/initWithBaseURL:" title="initWithBaseURL:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/initWithBaseURL:">&ndash;&nbsp;initWithBaseURL:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Initializes an <code>AFHTTPRequestOperationManager</code> object with the specified base URL.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (instancetype)initWithBaseURL:(NSURL *)<em>url</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>url</code></th>
+						<td><p>The base URL for the HTTP client.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+			<div class="method-subsection return">
+				<h4 class="method-subtitle parameter-title">Return Value</h4>
+				<p>The newly-initialized HTTP client</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Initializes an <code>AFHTTPRequestOperationManager</code> object with the specified base URL.</p>
+
+<p>This is the designated initializer.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Managing HTTP Request Operations" name="task_Managing HTTP Request Operations"></a>
+						<h2 class="task-title">Managing HTTP Request Operations</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/HTTPRequestOperationWithRequest:success:failure:" title="HTTPRequestOperationWithRequest:success:failure:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/HTTPRequestOperationWithRequest:success:failure:">&ndash;&nbsp;HTTPRequestOperationWithRequest:success:failure:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a>, and sets the response serializers to that of the HTTP client.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (AFHTTPRequestOperation *)HTTPRequestOperationWithRequest:(NSURLRequest *)<em>request</em> success:(void ( ^ ) ( AFHTTPRequestOperation *operation , id responseObject ))<em>success</em> failure:(void ( ^ ) ( AFHTTPRequestOperation *operation , NSError *error ))<em>failure</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>request</code></th>
+						<td><p>The request object to be loaded asynchronously during execution of the operation.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the created request operation and the object created from the response data of request.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>failure</code></th>
+						<td><p>A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes two arguments:, the created request operation and the <code>NSError</code> object describing the network or parsing error that occurred.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a>, and sets the response serializers to that of the HTTP client.</p>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+
+						<a title="Making HTTP Requests" name="task_Making HTTP Requests"></a>
+						<h2 class="task-title">Making HTTP Requests</h2>
+
+						<div class="task-list">
+							<div class="section-method">
+	<a name="//api/name/GET:parameters:success:failure:" title="GET:parameters:success:failure:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/GET:parameters:success:failure:">&ndash;&nbsp;GET:parameters:success:failure:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>GET</code> request.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (AFHTTPRequestOperation *)GET:(NSString *)<em>URLString</em> parameters:(id)<em>parameters</em> success:(void ( ^ ) ( AFHTTPRequestOperation *operation , id responseObject ))<em>success</em> failure:(void ( ^ ) ( AFHTTPRequestOperation *operation , NSError *error ))<em>failure</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>URLString</code></th>
+						<td><p>The URL string used to create the request URL.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>parameters</code></th>
+						<td><p>The parameters to be encoded according to the client request serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>failure</code></th>
+						<td><p>A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>GET</code> request.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/HTTPRequestOperationWithRequest:success:failure:">- HTTPRequestOperationWithRequest:success:failure:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/HEAD:parameters:success:failure:" title="HEAD:parameters:success:failure:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/HEAD:parameters:success:failure:">&ndash;&nbsp;HEAD:parameters:success:failure:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>HEAD</code> request.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (AFHTTPRequestOperation *)HEAD:(NSString *)<em>URLString</em> parameters:(id)<em>parameters</em> success:(void ( ^ ) ( AFHTTPRequestOperation *operation ))<em>success</em> failure:(void ( ^ ) ( AFHTTPRequestOperation *operation , NSError *error ))<em>failure</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>URLString</code></th>
+						<td><p>The URL string used to create the request URL.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>parameters</code></th>
+						<td><p>The parameters to be encoded according to the client request serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>A block object to be executed when the request operation finishes successfully. This block has no return value and takes a single arguments: the request operation.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>failure</code></th>
+						<td><p>A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>HEAD</code> request.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/HTTPRequestOperationWithRequest:success:failure:">- HTTPRequestOperationWithRequest:success:failure:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/POST:parameters:success:failure:" title="POST:parameters:success:failure:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/POST:parameters:success:failure:">&ndash;&nbsp;POST:parameters:success:failure:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>POST</code> request.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (AFHTTPRequestOperation *)POST:(NSString *)<em>URLString</em> parameters:(id)<em>parameters</em> success:(void ( ^ ) ( AFHTTPRequestOperation *operation , id responseObject ))<em>success</em> failure:(void ( ^ ) ( AFHTTPRequestOperation *operation , NSError *error ))<em>failure</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>URLString</code></th>
+						<td><p>The URL string used to create the request URL.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>parameters</code></th>
+						<td><p>The parameters to be encoded according to the client request serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>failure</code></th>
+						<td><p>A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>POST</code> request.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/HTTPRequestOperationWithRequest:success:failure:">- HTTPRequestOperationWithRequest:success:failure:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/POST:parameters:constructingBodyWithBlock:success:failure:" title="POST:parameters:constructingBodyWithBlock:success:failure:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/POST:parameters:constructingBodyWithBlock:success:failure:">&ndash;&nbsp;POST:parameters:constructingBodyWithBlock:success:failure:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a multipart <code>POST</code> request.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (AFHTTPRequestOperation *)POST:(NSString *)<em>URLString</em> parameters:(id)<em>parameters</em> constructingBodyWithBlock:(void ( ^ ) ( id&lt;AFMultipartFormData&gt; formData ))<em>block</em> success:(void ( ^ ) ( AFHTTPRequestOperation *operation , id responseObject ))<em>success</em> failure:(void ( ^ ) ( AFHTTPRequestOperation *operation , NSError *error ))<em>failure</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>URLString</code></th>
+						<td><p>The URL string used to create the request URL.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>parameters</code></th>
+						<td><p>The parameters to be encoded according to the client request serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>block</code></th>
+						<td><p>A block that takes a single argument and appends data to the HTTP body. The block argument is an object adopting the <a href="../Protocols/AFMultipartFormData.html"><code>AFMultipartFormData</code></a> protocol.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>failure</code></th>
+						<td><p>A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a multipart <code>POST</code> request.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/HTTPRequestOperationWithRequest:success:failure:">- HTTPRequestOperationWithRequest:success:failure:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/PUT:parameters:success:failure:" title="PUT:parameters:success:failure:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/PUT:parameters:success:failure:">&ndash;&nbsp;PUT:parameters:success:failure:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>PUT</code> request.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (AFHTTPRequestOperation *)PUT:(NSString *)<em>URLString</em> parameters:(id)<em>parameters</em> success:(void ( ^ ) ( AFHTTPRequestOperation *operation , id responseObject ))<em>success</em> failure:(void ( ^ ) ( AFHTTPRequestOperation *operation , NSError *error ))<em>failure</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>URLString</code></th>
+						<td><p>The URL string used to create the request URL.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>parameters</code></th>
+						<td><p>The parameters to be encoded according to the client request serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>failure</code></th>
+						<td><p>A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>PUT</code> request.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/HTTPRequestOperationWithRequest:success:failure:">- HTTPRequestOperationWithRequest:success:failure:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/PATCH:parameters:success:failure:" title="PATCH:parameters:success:failure:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/PATCH:parameters:success:failure:">&ndash;&nbsp;PATCH:parameters:success:failure:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>PATCH</code> request.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (AFHTTPRequestOperation *)PATCH:(NSString *)<em>URLString</em> parameters:(id)<em>parameters</em> success:(void ( ^ ) ( AFHTTPRequestOperation *operation , id responseObject ))<em>success</em> failure:(void ( ^ ) ( AFHTTPRequestOperation *operation , NSError *error ))<em>failure</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>URLString</code></th>
+						<td><p>The URL string used to create the request URL.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>parameters</code></th>
+						<td><p>The parameters to be encoded according to the client request serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>failure</code></th>
+						<td><p>A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>PATCH</code> request.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/HTTPRequestOperationWithRequest:success:failure:">- HTTPRequestOperationWithRequest:success:failure:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div><div class="section-method">
+	<a name="//api/name/DELETE:parameters:success:failure:" title="DELETE:parameters:success:failure:"></a>
+	<h3 class="method-title"><code><a href="#//api/name/DELETE:parameters:success:failure:">&ndash;&nbsp;DELETE:parameters:success:failure:</a></code>
+</h3>
+
+	<div class="method-info">
+		<div class="pointy-thing"></div>
+
+		<div class="method-info-container">
+			
+			
+			<div class="method-subsection brief-description">
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>DELETE</code> request.</p>
+			</div>
+			
+		    
+
+			<div class="method-subsection method-declaration"><code>- (AFHTTPRequestOperation *)DELETE:(NSString *)<em>URLString</em> parameters:(id)<em>parameters</em> success:(void ( ^ ) ( AFHTTPRequestOperation *operation , id responseObject ))<em>success</em> failure:(void ( ^ ) ( AFHTTPRequestOperation *operation , NSError *error ))<em>failure</em></code></div>
+
+		    
+			
+			<div class="method-subsection arguments-section parameters">
+				<h4 class="method-subtitle parameter-title">Parameters</h4>
+				<table class="argument-def parameter-def">
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>URLString</code></th>
+						<td><p>The URL string used to create the request URL.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>parameters</code></th>
+						<td><p>The parameters to be encoded according to the client request serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>success</code></th>
+						<td><p>A block object to be executed when the request operation finishes successfully. This block has no return value and takes two arguments: the request operation, and the response object created by the client response serializer.</p></td>
+					</tr>
+				
+					<tr>
+						<th scope="row" class="argument-name"><code>failure</code></th>
+						<td><p>A block object to be executed when the request operation finishes unsuccessfully, or that finishes successfully, but encountered an error while parsing the response data. This block has no return value and takes a two arguments: the request operation and the error describing the network or parsing error that occurred.</p></td>
+					</tr>
+				
+				</table>
+			</div>
+			
+
+			
+
+			
+
+			
+			<div class="method-subsection discussion-section">
+				<h4 class="method-subtitle">Discussion</h4>
+				<p>Creates and runs an <a href="../Classes/AFHTTPRequestOperation.html"><code>AFHTTPRequestOperation</code></a> with a <code>DELETE</code> request.</p>
+			</div>
+			
+
+			
+
+			
+			<div class="method-subsection see-also-section">
+				<h4 class="method-subtitle">See Also</h4>
+				<ul>
+					
+					<li><code><p><a href="#//api/name/HTTPRequestOperationWithRequest:success:failure:">- HTTPRequestOperationWithRequest:success:failure:</a></p></code></li>
+					
+				</ul>
+			</div>
+			
+
+			
+			<div class="method-subsection declared-in-section">
+				<h4 class="method-subtitle">Declared In</h4>
+				<p><code class="declared-in-ref">AFHTTPRequestOperationManager.h</code></p>
+			</div>
+			
+			
+		</div>
+	</div>
+</div>
+						</div>
+						
+					</div>
+					
+					
+
+                    
+                    
+          
+				</main>
+
+				<footer>
+					<div class="footer-copyright">
+						
+						<p class="copyright">Copyright &copy; 2015 3000k. All rights reserved. Updated: 2015-09-24</p>
+						
+						
+						<p class="generator">Generated by <a href="http://appledoc.gentlebytes.com">appledoc 2.2.1 (build 1334)</a>.</p>
+						
+					</div>
+				</footer>
+			</div>
+		</div>
+	</article>
+
+	<script src="../js/script.js"></script>
+</body>
+</html>

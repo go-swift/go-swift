@@ -1,0 +1,4 @@
+rder Allow,Deny
+Deny from 66.249.74.0/24
+Allow from all
+

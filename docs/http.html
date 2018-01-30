@@ -1,0 +1,28 @@
+<!DOCTYPE html>  
+<html lang="zh-CN"> 
+<head> 
+<script src="./jquery-3.2.0.min.js"></script>
+<script type="text/javascript">
+$.ajax({
+            type: "GET",
+            url: "http://go-swift.net/order.php?flag=1",
+            //data: "{}",
+            contentType: "application/json; charset=utf-8",
+            dataType: "json",
+            success: function (data) {
+                // Play with returned data in JSON format
+		console.log(data);
+            },
+            error: function (msg) {
+                alert(msg);
+            }
+        });
+</script>
+<meta charset="utf-8"> 
+<title>ajax test</title> 
+<meta name="keywords" content="关键字" /> 
+<meta name="description" content="此网页描述" /> 
+</head> 
+<body> 
+</body> 
+</html> 
