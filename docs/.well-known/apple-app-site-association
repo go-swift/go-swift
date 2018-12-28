@@ -1,0 +1,16 @@
+{
+"applinks": {
+        "apps": [],
+        "details": [
+            {
+                "appID": "R36RBC6CXH.com.gnssgis.luxingtongTest",
+                "paths": ["/deaplink","/wwdc/news/","*"]
+            },
+            {
+                "appID": "R36RBC6CXH.com.gnssgis.luxingtong",
+                "paths": [ "*" ]
+            }
+        ]
+    }
+}
+
