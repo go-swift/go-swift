@@ -33,15 +33,15 @@
 			<key>metadata</key>
 			<dict>
 				<key>bundle-identifier</key>
-				<string>com.klicen.KlicenEnterprise</string>
+				<string>com.2LZYXYHCU3.well</string>
 				<key>bundle-version</key>
 				<string>1.0.1</string>
 				<key>kind</key>
 				<string>software</string>
 				<key>subtitle</key>
-				<string>Newalign</string>
+				<string>MakeAwesome</string>
 				<key>title</key>
-				<string>Newalign</string>
+				<string>Newapp</string>
 			</dict>
 		</dict>
 	</array>
