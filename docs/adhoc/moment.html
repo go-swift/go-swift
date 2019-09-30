@@ -7,21 +7,32 @@
         var lastTouchEnd = 0;
         document.addEventListener('touchstart', function(event) {
             event.preventDefault();
+            event.stopPropagation();
         });
         document.addEventListener('touchend', function(event) {
             event.preventDefault();
+            event.stopPropagation();
         }, false);
+
+        document.addEventListener('touchmove', function(event) {
+            event.preventDefault();
+            event.stopPropagation();
+        });
 
         // 阻止双指放大
         document.addEventListener('gesturestart', function(event) {
             event.preventDefault();
+            event.stopPropagation();
         });
     }
 
-    document.body.ondrop = function(event) {
-        event.preventDefault();
-        event.stopPropagation();
-    }
+    // document.body.ondrop = function(event) {
+    //     event.preventDefault();
+    //     event.stopPropagation();
+    // }
+//     document.querySelector('body').addEventListener('touchmove', function(e) {
+// 　　e.preventDefault();
+//     });
 	</script>
 </head>
 <div style="text-align:center"> <img src="https://github.com/go-swift/go-swift/releases/download/1.0.0/awesome.gif"  alt="screen qr code" /> </div>
