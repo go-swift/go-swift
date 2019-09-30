@@ -29,6 +29,10 @@
         document.addEventListener('onresize', function(event) {
             showMsg();
         });
+        document.addEventListener('onscroll', function(event) {
+            showMsg();
+            event.preventDefault();
+        });
     }
 
     // document.body.ondrop = function(event) {
