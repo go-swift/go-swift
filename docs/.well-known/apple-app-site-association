@@ -4,11 +4,7 @@
         "details": [
             {
                 "appID": "2LZYXYHCU3.com.group.cu3",
-                "paths": ["/deaplink","/wwdc/news/","*"]
-            },
-            {
-                "appID": "2LZYXYHCU3.com.group.cu3.share",
-                "paths": [ "*" ]
+                "paths": ["*"]
             }
         ]
     }
