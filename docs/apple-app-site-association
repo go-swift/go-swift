@@ -3,11 +3,11 @@
         "apps": [],
         "details": [
             {
-                "appID": "R36RBC6CXH.com.gnssgis.luxingtongTest",
+                "appID": "2LZYXYHCU3.com.group.cu3",
                 "paths": ["/deaplink","/wwdc/news/","*"]
             },
             {
-                "appID": "R36RBC6CXH.com.gnssgis.luxingtong",
+                "appID": "2LZYXYHCU3.com.group.cu3.share",
                 "paths": [ "*" ]
             }
         ]
