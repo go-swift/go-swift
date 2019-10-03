@@ -4,7 +4,7 @@
         "details": [
             {
                 "appID": "2LZYXYHCU3.com.group.cu3",
-                "paths": ["/deeplink","/adhoc/*","*"]
+                "paths": ["/deeplink","/go-swift/docs/adhoc/*","/go-swift/docs/*"]
             }
         ]
     }
